@@ -1,0 +1,18 @@
+.swimlane-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .swimlanes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .swimlane-headers{
+    display: flex;
+    gap:15px;
+    justify-content: center;
+  }
+  
