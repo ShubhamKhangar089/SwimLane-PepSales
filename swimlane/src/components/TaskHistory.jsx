@@ -1,5 +1,4 @@
 import React from 'react';
-// import './TaskHistory.css';
 
 const TaskHistory = ({ history }) => {
   return (

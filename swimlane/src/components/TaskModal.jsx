@@ -1,4 +1,3 @@
-import React from 'react';
 import TaskHistory from './TaskHistory';
 import '../styles/TaskModal.css';
 
@@ -10,7 +9,7 @@ const TaskModal = ({ task, onClose }) => {
         <p><strong>Title:</strong> {task.title}</p>
         <p><strong>Description:</strong> {task.description}</p>
         <button className="close-btn" onClick={onClose}>Close</button>
-        
+
         <TaskHistory history={task.history} />
       </div>
     </div>

@@ -8,11 +8,23 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    /* background: red; */
   }
 
   .swimlane-headers{
     display: flex;
     gap:15px;
     justify-content: center;
+  
+  }
+
+  @media only screen and (max-width: 768px) {
+    .swimlanes {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
   }
   

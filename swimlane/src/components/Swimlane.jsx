@@ -5,10 +5,11 @@ const Swimlane = ({ laneName, tasks, onDrop }) => {
   return (
     <div
       className="swimlane"
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={(e) => onDrop(e, laneName)}
+      onDragOver={e => e.preventDefault()}
+      onDrop={e => onDrop(e, laneName)}
     >
       <h3>{laneName.toUpperCase()}</h3>
+      <hr />
       {tasks.map(task => (
         <Task key={task.id} task={task} />
       ))}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTask, editTask } from '../store/taskSlice';
+import { deleteTaskFromServer, updateTaskOnServer } from '../store/taskSlice';
 import TaskModal from './TaskModal';
 import '../styles/Task.css';
 
@@ -12,6 +12,7 @@ const Task = ({ task }) => {
 
   const handleDragStart = (e) => {
     e.dataTransfer.setData('taskId', task.id);
+    e.dataTransfer.setData('prevStatus', task.status);
   };
 
   const handleEdit = () => {
@@ -19,7 +20,8 @@ const Task = ({ task }) => {
   };
 
   const handleSaveEdit = () => {
-    dispatch(editTask({ taskId: task.id, updatedTask: { ...task, title: newTitle } }));
+    const updatedTask = { ...task, title: newTitle };
+    dispatch(updateTaskOnServer({ taskId: task.id, updatedTask }));
     setIsEditing(false);
   };
 
@@ -29,15 +31,11 @@ const Task = ({ task }) => {
   };
 
   const handleDeleteClick = () => {
-    dispatch(deleteTask({ taskId: task.id }));
+    dispatch(deleteTaskFromServer(task.id));
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-  };
-
-  const handleTitleChange = (e) => {
-    setNewTitle(e.target.value);
   };
 
   return (
@@ -47,7 +45,7 @@ const Task = ({ task }) => {
           <input
             type="text"
             value={newTitle}
-            onChange={handleTitleChange}
+            onChange={(e) => setNewTitle(e.target.value)}
             autoFocus
           />
         ) : (
@@ -65,12 +63,16 @@ const Task = ({ task }) => {
         )}
       </div>
       <div className="task-actions">
-        <button className="edit-btn" onClick={handleEdit}>
-          ✏️
-        </button>
-        <button className="delete-btn" onClick={handleDeleteClick}>
-          🗑️
-        </button>
+        {!isEditing && (
+          <>
+            <button className="edit-btn" onClick={handleEdit}>
+              ✏️
+            </button>
+            <button className="delete-btn" onClick={handleDeleteClick}>
+              🗑️
+            </button>
+          </>
+        )}
       </div>
 
       {isModalOpen && (
