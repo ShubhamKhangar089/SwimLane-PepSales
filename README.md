@@ -13,6 +13,10 @@ cmd start server :- npm run dev
 5. drag and drop feature added (DND);
 6. Filter by title added for filter
 
-## deploy link vercel-app:  
+## Demo video :- (flow of site ) :- https://vimeo.com/1006504736/93643833d4?share=copy
+
+
+## deploy link vercel-app:  https://swim-lane-pep-sales.vercel.app
+
 
 ## Thank You
