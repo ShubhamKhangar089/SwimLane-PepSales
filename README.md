@@ -1,9 +1,7 @@
 # SwimLane PepSales
 
 ## How To Run :-
-Step 1 :- Open Terminal swimlane run below cmd terminal 
-cmd json server :- json-server --watch db.json --port 3001
-cmd start server :- npm run dev
+Open Vercel Deploy Link
 
 ## features Added
 1. Create new Task default add to todo list
