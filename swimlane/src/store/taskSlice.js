@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Thunks for interacting with the mock server
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
-  const response = await fetch('https://backendswimlane.onrender.com/tasks');
+  const response = await fetch('https://swimlanebackend.onrender.com/tasks');
   if (!response.ok) {
     throw new Error(`Network response was not ok: ${response.status}`);
   }
@@ -10,7 +10,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 });
 
 export const addTaskToServer = createAsyncThunk('tasks/addTaskToServer', async (task) => {
-  const response = await fetch('https://backendswimlane.onrender.com/tasks', {
+  const response = await fetch('https://swimlanebackend.onrender.com/tasks', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const addTaskToServer = createAsyncThunk('tasks/addTaskToServer', async (
 });
 
 export const updateTaskOnServer = createAsyncThunk('tasks/updateTaskOnServer', async ({ taskId, updatedTask }) => {
-  const response = await fetch(`https://backendswimlane.onrender.com/tasks/${taskId}`, {
+  const response = await fetch(`https://swimlanebackend.onrender.com/tasks/${taskId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const updateTaskOnServer = createAsyncThunk('tasks/updateTaskOnServer', a
 });
 
 export const deleteTaskFromServer = createAsyncThunk('tasks/deleteTaskFromServer', async (taskId) => {
-  const response = await fetch(`https://backendswimlane.onrender.com/tasks/${taskId}`, {
+  const response = await fetch(`https://swimlanebackend.onrender.com/tasks/${taskId}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
@@ -49,7 +49,7 @@ export const deleteTaskFromServer = createAsyncThunk('tasks/deleteTaskFromServer
 
 
 export const updateTaskStatusOnServer = createAsyncThunk('tasks/updateTaskStatusOnServer', async ({ taskId, newStatus, prevStatus }) => {
-  const response = await fetch(`https://backendswimlane.onrender.com/tasks/${taskId}`, {
+  const response = await fetch(`https://swimlanebackend.onrender.com/tasks/${taskId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export const updateTaskStatusOnServer = createAsyncThunk('tasks/updateTaskStatus
   const task = await response.json();
   const newHistory = [...task.history, { from: prevStatus, to: newStatus, timestamp: new Date().toLocaleString() }];
 
-  const updateResponse = await fetch(`https://backendswimlane.onrender.com/tasks/${taskId}`, {
+  const updateResponse = await fetch(`https://swimlanebackend.onrender.com/tasks/${taskId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
